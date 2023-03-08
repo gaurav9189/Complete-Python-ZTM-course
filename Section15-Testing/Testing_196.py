@@ -1,7 +1,4 @@
 # Each testing code is to test features or development work
-import unittest
-
-
 def do_stuff(num=0):
     try:
         if num or num == 0:

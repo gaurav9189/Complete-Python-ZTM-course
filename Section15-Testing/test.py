@@ -3,6 +3,9 @@ import Testing_196
 
 
 class TestTesting_196(unittest.TestCase):
+    def setUp(self):
+        print('Testing begins')
+
     def test_do_stuff1(self):
         test_param = 10
         result = Testing_196.do_stuff(test_param)
@@ -35,5 +38,9 @@ class TestTesting_196(unittest.TestCase):
         result = Testing_196.do_stuff(test_param)
         self.assertEqual(result, 5)
 
+    def tearDown(self):
+        print('Testing ends')
 
-unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
