@@ -18,7 +18,7 @@ try:
 except OSError as er:
     print('OS issue?')
 
-
+# Filtering out files which are in jpg format only!
 for i in files:
     images.append((os.path.splitext(i)))
 jpg = [name for name, extn in images if extn == '.jpg']
