@@ -10,17 +10,14 @@ client = tweepy.Client(
     access_token_secret=os.environ['access_token_secret']
 )
 # I had to set user_auth to False as it was failing otherwise!
-# This script helps in following the list of followers your influencers follow!
+# This script helps in following the list of followers your fav influencers follow!
 # To-Do: Make a retry function to help resume once the exceptions are handled
 #        Check the following list and only follow the ones not followed
 
+# Gathering this data to address To-Do
 my_id = client.get_me().data.id
-if client.get_users_following(
-        my_id, user_auth=True).data:
-    my_followers = [myfollows.id for myfollows in client.get_users_following(
-        my_id, user_auth=True).data]
-else:
-    my_followers = []
+my_followers = [myfollows.id for myfollows in client.get_users_following(
+    my_id, user_auth=True).data]
 
 
 def search_users(username):
@@ -44,7 +41,7 @@ def paginate(page):
         for user in data.data:
             # print(user.name)
             follow = following(user.id, user.name)
-            # time.sleep(2)
+            time.sleep(1)
             if not follow:
                 print('breaking the loop')
                 break
@@ -57,7 +54,6 @@ def following(userid, username):
         if userid not in my_followers:
             print(f'Added follower for your influencer: {username}')
             client.follow_user(target_user_id=userid, user_auth=True)
-            time.sleep(5)
             return 1
         else:
             print(f'Already following {username}')
@@ -73,6 +69,3 @@ if __name__ == '__main__':
 
     influencer_id = search_users('sundarpichai')
     followers_of_influencers(influencer_id)
-    # for user in my_followers:
-    #     client.unfollow(user)
-    #     print('unfollowed {user}')
