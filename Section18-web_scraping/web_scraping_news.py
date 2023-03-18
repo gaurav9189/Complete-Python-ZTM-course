@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import pprint
 # This is my take on the exercise, however what i didn't notice that the length of links and scores are not equal
 res = requests.get('https://news.ycombinator.com/')
 # print(res.text)
@@ -33,4 +34,4 @@ def combined(combined_data):
     return final_data
 
 
-print(combined(combined_data))
+pprint.pprint(sorted(combined(combined_data), key=lambda x: x[2]))
