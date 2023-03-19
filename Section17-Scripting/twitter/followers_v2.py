@@ -15,12 +15,16 @@ client = tweepy.Client(
 #        Check the following list and only follow the ones not followed
 
 my_id = client.get_me().data.id
+# Creating an empty list if you're following no one
+# LIST LENGTH is ONLY 100!!!!
 if client.get_users_following(
         my_id, user_auth=True).data:
     my_followers = [myfollows.id for myfollows in client.get_users_following(
         my_id, user_auth=True).data]
 else:
     my_followers = []
+# print(len(my_followers))
+# print(my_followers)
 
 
 def search_users(username):
@@ -32,11 +36,15 @@ def search_users(username):
             print(f"You are now following the great {i.name}")
             return i.id
 
+# paginates users which the infleuncer is following
+
 
 def followers_of_influencers(influencer_id):
     page = tweepy.Paginator(client.get_users_following,
                             influencer_id, user_auth=True)
     return paginate(page)
+
+# The page response has fields such as data, metadata etc
 
 
 def paginate(page):
@@ -70,7 +78,7 @@ def following(userid, username):
 
 
 if __name__ == '__main__':
-
+    print('Hi, let us play Twitter')
     influencer_id = search_users('sundarpichai')
     followers_of_influencers(influencer_id)
     # for user in my_followers:
