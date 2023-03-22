@@ -1,0 +1,9 @@
+email: why@gmail.com
+subject: something why
+message: why are you something?
+email: hey@gmail.com
+subject: why hey?
+message: hey hey eh?
+email: mr@gmail.com
+subject: hi there mr
+message: Mr hwo are you?
